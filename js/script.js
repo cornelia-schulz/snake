@@ -1,31 +1,22 @@
-var c = document.getElementById("game");
-var ctx = c.getContext("2d");
-console.log("game on");
-var backgroundImage = new Image();
-backgroundImage.src="images/grass.jpg";
-ctx.fillStyle = 'brown';
-/*ctx.fillRect(392, 200, 8, 8);
-ctx.fillRect(400, 200, 8, 8);
-ctx.fillRect(408, 200, 8, 8);
-ctx.fillRect(408, 208, 8, 8);*/
+document.onkeydown = detectKey;
 
-var snakeSegment = function(x, y, sideLength) {
-    this.x = x;
-    this.y = y;
-    this.width = sideLength;
-    this.height = sideLength;
-    this.render = function(ctx){
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+function detectKey(e){
+    var direction = "";
+    if (e.keyCode == "38"){
+        direction = "up";
+        console.log("up");
     }
-}
-
-var snake = [
-    new snakeSegment(392, 200, 8),
-    new snakeSegment(400, 200, 8),
-    new snakeSegment(408, 200, 8),
-    new snakeSegment(408, 208, 8)
-];
-
-for (var i = 0; i < snake.length; i++){
-    snake[i].render(ctx);
+    else if (e.keyCode == "40"){
+        direction = "down";
+        console.log("down");
+    }
+    else if (e.keyCode == "37") {
+        direction = "left";
+        console.log("left");
+    }
+    else if (e.keyCode == "39"){
+        direction = "right";
+        console.log("right");
+    }
+    moveSnake(direction);
 }
