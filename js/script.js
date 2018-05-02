@@ -4,10 +4,10 @@ console.log("game on");
 var backgroundImage = new Image();
 backgroundImage.src="images/grass.jpg";
 ctx.fillStyle = 'brown';
-ctx.fillRect(392, 200, 8, 8);
+/*ctx.fillRect(392, 200, 8, 8);
 ctx.fillRect(400, 200, 8, 8);
 ctx.fillRect(408, 200, 8, 8);
-ctx.fillRect(408, 208, 8, 8);
+ctx.fillRect(408, 208, 8, 8);*/
 
 var snakeSegment = function(x, y, sideLength) {
     this.x = x;
@@ -15,7 +15,7 @@ var snakeSegment = function(x, y, sideLength) {
     this.width = sideLength;
     this.height = sideLength;
     this.render = function(ctx){
-        ctx.fillRect;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }
 
@@ -25,3 +25,7 @@ var snake = [
     new snakeSegment(408, 200, 8),
     new snakeSegment(408, 208, 8)
 ];
+
+for (var i = 0; i < snake.length; i++){
+    snake[i].render(ctx);
+}
