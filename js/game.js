@@ -5,8 +5,9 @@ var startGame = function(){
 }
 
 var runGame = function(){
-    moveSnake();
+    renderSnake();
     globalID = requestAnimationFrame(runGame);
+    
 }
 
 var checkForCollisionWithBorders = function(){
@@ -17,7 +18,12 @@ var checkForCollisionWithBorders = function(){
 }
 
 var checkForCollisionWithSelf = function(){
-
+    for (var i = 1; i < snake.length; i++){
+        if (snake[0].x === snake[i].x && snake[0].y === snake[i].y){
+            console.log("following match: " + snake[0].x + " vs " + snake[i].x + " and " + snake[0].y + " vs " + snake[i].y + " at segment " + i);
+            endGame();
+        }
+    }
 }
 
 var calculatePoints = function(){
@@ -25,7 +31,6 @@ var calculatePoints = function(){
 }
 
 var endGame = function(){
-    console.log("end game");
     cancelAnimationFrame(globalID);
 }
 

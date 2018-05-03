@@ -1,14 +1,15 @@
 var c = document.getElementById("game");
 var ctx = c.getContext("2d");
+var size = 8;
 console.log("game on");
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
-    var color = '#';
+    var colour = '#';
     for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+      colour += letters[Math.floor(Math.random() * 16)];
     }
-    return color;
+    return colour;
   }
 ctx.fillStyle = getRandomColor();
 
@@ -23,10 +24,11 @@ var snakeSegment = function(x, y, sideLength) {
 }
 
 var snake = [
-    new snakeSegment(292, 100, 8),
-    new snakeSegment(300, 100, 8),
-    new snakeSegment(308, 100, 8),
-    new snakeSegment(308, 108, 8)
+    new snakeSegment(292, 100, size),
+    new snakeSegment(300, 100, size),
+    new snakeSegment(308, 100, size),
+    new snakeSegment(308, 108, size),
+    new snakeSegment(316, 108, size)
 ];
 
 var moveSnake = function(direction){
@@ -34,25 +36,27 @@ var moveSnake = function(direction){
     snake.pop();
     ctx.clearRect(0, 0, c.width, c.height);
     if (direction === "up"){
-        snake.unshift(new snakeSegment(snake[0].x, snake[0].y-8, 8));
+        snake.unshift(new snakeSegment(snake[0].x, snake[0].y-size, size));
     }
     else if (direction === "down"){
-        snake.unshift(new snakeSegment(snake[0].x, snake[0].y+8, 8));
+        snake.unshift(new snakeSegment(snake[0].x, snake[0].y+size, size));
     }
     else if (direction === "left"){
-        snake.unshift(new snakeSegment(snake[0].x-8, snake[0].y, 8));
+        snake.unshift(new snakeSegment(snake[0].x-size, snake[0].y, size));
     }
     else {
-        snake.unshift(new snakeSegment(snake[0].x+8, snake[0].y, 8));
+        snake.unshift(new snakeSegment(snake[0].x+size, snake[0].y, size));
     }
     checkForCollisionWithBorders();
+    checkForCollisionWithSelf();
     ctx.fillStyle = getRandomColor();
-    renderSnake();
+    renderSnake();    
+    //console.log(snake);
 }
 
 var renderSnake = function(){
     for (var i = 0; i < snake.length; i++){
-        snake[i].render(ctx);
+        ctx.fillRect(snake[i].x, snake[i].y, snake[i].width, snake[i].height);
     }
 }
 
