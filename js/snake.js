@@ -36,6 +36,7 @@ var moveSnake = function(direction){
     else {
         snake.unshift(new snakeSegment(snake[0].x+8, snake[0].y, 8));
     }
+    checkForCollisionWithBorders();
     renderSnake();
 }
 
@@ -46,4 +47,3 @@ var renderSnake = function(){
 }
 
 
-renderSnake();
