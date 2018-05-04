@@ -31,6 +31,7 @@ var calculatePoints = function(){
 }
 
 var endGame = function(){
+    document.removeEventListener("keydown", detectKey, false);
     cancelAnimationFrame(globalID);
 }
 
