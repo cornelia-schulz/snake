@@ -1,4 +1,4 @@
-var c = document.getElementById("game");
+
 var globalID;
 var startGame = function(){
     runGame();
@@ -6,7 +6,8 @@ var startGame = function(){
 
 var runGame = function(){
     renderSnake();
-    globalID = requestAnimationFrame(runGame);
+    generateRandomBitsOfFood();
+    //globalID = requestAnimationFrame(runGame);
     
 }
 

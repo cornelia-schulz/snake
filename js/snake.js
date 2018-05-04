@@ -11,7 +11,7 @@ function getRandomColor() {
     }
     return colour;
   }
-ctx.fillStyle = getRandomColor();
+  ctx.fillStyle = getRandomColor();
 
 var snakeSegment = function(x, y, sideLength) {
     this.x = x;
@@ -49,14 +49,14 @@ var moveSnake = function(direction){
     }
     checkForCollisionWithBorders();
     checkForCollisionWithSelf();
-    ctx.fillStyle = getRandomColor();
+    
     renderSnake();    
     //console.log(snake);
 }
 
 var renderSnake = function(){
     for (var i = 0; i < snake.length; i++){
-        ctx.fillRect(snake[i].x, snake[i].y, snake[i].width, snake[i].height);
+        snake[i].render(ctx);
     }
 }
 
