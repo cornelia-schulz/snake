@@ -49,12 +49,13 @@ var moveSnake = function(direction){
     }
     checkForCollisionWithBorders();
     checkForCollisionWithSelf();
-    
-    renderSnake();    
+    game.checkOnFood();
+    //renderSnake();    
+    game.render(ctx);
     //console.log(snake);
 }
 
-var renderSnake = function(){
+var renderSnake = function(ctx){
     for (var i = 0; i < snake.length; i++){
         snake[i].render(ctx);
     }

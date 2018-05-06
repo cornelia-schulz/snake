@@ -10,10 +10,9 @@ var snakeFood = function(x, y, sideLength) {
 }
 
 var generateRandomBitsOfFood = function() {
-    var x;
-    var y;
-    x += c.width[Math.floor(Math.random() * 1)];
-    y += c.height[Math.floor(Math.random() * 1)];
+    var x = Math.floor(Math.random() * (c.width + 1));
+    var y = Math.floor(Math.random() * (c.height + 1));
     var food = new snakeFood(x, y, size);
-    food.render(ctx);
+    //food.render(ctx);
+    return food;
 }

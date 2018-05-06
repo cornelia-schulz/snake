@@ -1,14 +1,38 @@
 
 var globalID;
-var startGame = function(){
-    runGame();
-}
+var Game = function(){
+    this.food = generateRandomBitsOfFood();
+    console.log(this.food);
+    this.points = 0;
+    this.startGame = function(){
+        this.runGame();
+    }
 
-var runGame = function(){
-    renderSnake();
-    generateRandomBitsOfFood();
-    //globalID = requestAnimationFrame(runGame);
-    
+    this.checkOnFood = function(){
+        for (var i = 0; i < snake.length; i++){
+            var x = snake[i].x;
+            var y = snake[i].y;
+            if(x === this.food.x && y === this.food.y){
+                this.points = calculatePoints();
+                console.log(this.points);
+                return (generateRandomBitsOfFood());
+            }
+        }
+    };
+
+    this.runGame = function(){
+        this.render(ctx);
+        // renderSnake();
+        // this.food.render(ctx);
+        //globalID = requestAnimationFrame(runGame);
+    };
+
+    this.render = function(ctx){
+        renderSnake(ctx);
+        this.food.render(ctx);
+    };
+
+
 }
 
 var checkForCollisionWithBorders = function(){
@@ -28,7 +52,7 @@ var checkForCollisionWithSelf = function(){
 }
 
 var calculatePoints = function(){
-
+    return game.points += 5;
 }
 
 var endGame = function(){
@@ -36,4 +60,5 @@ var endGame = function(){
     cancelAnimationFrame(globalID);
 }
 
-startGame();
+var game = new Game();
+game.startGame();
