@@ -18,6 +18,7 @@ var snakeSegment = function(x, y, sideLength) {
     this.y = y;
     this.width = sideLength;
     this.height = sideLength;
+    this.isGrowing = false;
     this.render = function(ctx){
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
@@ -33,7 +34,10 @@ var snake = [
 
 var moveSnake = function(direction){
     // remove last segment of snake and add one at the front
-    snake.pop();
+    game.checkOnFood();
+    if (snake[1].isGrowing === false){
+        snake.pop();
+    }
     ctx.clearRect(0, 0, c.width, c.height);
     if (direction === "up"){
         snake.unshift(new snakeSegment(snake[0].x, snake[0].y-size, size));
@@ -49,9 +53,10 @@ var moveSnake = function(direction){
     }
     checkForCollisionWithBorders();
     checkForCollisionWithSelf();
-    game.checkOnFood();
     //renderSnake();    
     game.render(ctx);
+    console.log(snake);
+    snake[0].isGrowing = false;
     //console.log(snake);
 }
 

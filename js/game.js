@@ -9,15 +9,16 @@ var Game = function(){
     }
 
     this.checkOnFood = function(){
-        for (var i = 0; i < snake.length; i++){
-            var x = snake[i].x;
-            var y = snake[i].y;
-            if(x === this.food.x && y === this.food.y){
+            var x1 = snake[0].x;
+            var y1 = snake[0].y;
+            var x2 = this.food.x;
+            var y2 = this.food.y;
+            if((x1 >= x2 && x1 <= x2 + size) && (y1 >= y2 && y1 <= y2 + size)){
+                snake[0].isGrowing = true;
                 this.points = calculatePoints();
                 console.log(this.points);
-                return (generateRandomBitsOfFood());
+                this.food = generateRandomBitsOfFood();  
             }
-        }
     };
 
     this.runGame = function(){
