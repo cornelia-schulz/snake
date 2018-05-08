@@ -5,7 +5,7 @@ var startGame = function(){
 }
 
 var runGame = function(){
-    renderSnake();
+    //moveSnake();
     globalID = requestAnimationFrame(runGame);
     
 }
@@ -31,6 +31,7 @@ var calculatePoints = function(){
 }
 
 var endGame = function(){
+    document.removeEventListener("keydown", detectKey, false);
     cancelAnimationFrame(globalID);
 }
 

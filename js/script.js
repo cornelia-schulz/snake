@@ -1,4 +1,5 @@
-document.onkeydown = detectKey;
+//document.onkeydown = detectKey;
+document.addEventListener("keydown", detectKey);
 
 function detectKey(e){
     var direction = "";
