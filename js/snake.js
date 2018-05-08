@@ -11,13 +11,14 @@ function getRandomColor() {
     }
     return colour;
   }
-ctx.fillStyle = getRandomColor();
+  ctx.fillStyle = getRandomColor();
 
 var snakeSegment = function(x, y, sideLength) {
     this.x = x;
     this.y = y;
     this.width = sideLength;
     this.height = sideLength;
+    this.isGrowing = false;
     this.render = function(ctx){
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
@@ -33,7 +34,10 @@ var snake = [
 
 var moveSnake = function(direction){
     // remove last segment of snake and add one at the front
-    snake.pop();
+    game.checkOnFood();
+    if (snake[1].isGrowing === false){
+        snake.pop();
+    }
     ctx.clearRect(0, 0, c.width, c.height);
     if (direction === "up"){
         snake.unshift(new snakeSegment(snake[0].x, snake[0].y-size, size));
@@ -48,15 +52,17 @@ var moveSnake = function(direction){
         snake.unshift(new snakeSegment(snake[0].x+size, snake[0].y, size));
     }
     checkForCollisionWithBorders();
-    checkForCollisionWithSelf();
-    ctx.fillStyle = getRandomColor();
-    renderSnake();    
-    //console.log(snake);
+    checkForCollisionWithSelf();  
+    game.render(ctx);
+    console.log(snake);
+    for (var i = 0; i < snake.length; i++){
+        snake[i].isGrowing = false;
+    }
 }
 
-var renderSnake = function(){
+var renderSnake = function(ctx){
     for (var i = 0; i < snake.length; i++){
-        ctx.fillRect(snake[i].x, snake[i].y, snake[i].width, snake[i].height);
+        snake[i].render(ctx);
     }
 }
 
