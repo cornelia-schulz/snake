@@ -52,12 +52,12 @@ var moveSnake = function(direction){
         snake.unshift(new snakeSegment(snake[0].x+size, snake[0].y, size));
     }
     checkForCollisionWithBorders();
-    checkForCollisionWithSelf();
-    //renderSnake();    
+    checkForCollisionWithSelf();  
     game.render(ctx);
     console.log(snake);
-    snake[0].isGrowing = false;
-    //console.log(snake);
+    for (var i = 0; i < snake.length; i++){
+        snake[i].isGrowing = false;
+    }
 }
 
 var renderSnake = function(ctx){
