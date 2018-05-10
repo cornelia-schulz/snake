@@ -14,6 +14,8 @@ var Game = function () {
   this.elapsed;
 
   this.startGame = function () {
+    resetSnake();
+    this.stopMoving = false;
     this.points = 0;
     this.runGame ();
   };

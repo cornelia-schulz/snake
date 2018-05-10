@@ -66,4 +66,15 @@ var renderSnake = function(ctx){
     }
 }
 
+var resetSnake = function(){
+    snake = [];
+    snake = [
+        new snakeSegment(292, 100, size),
+        new snakeSegment(300, 100, size),
+        new snakeSegment(308, 100, size),
+        new snakeSegment(308, 108, size),
+        new snakeSegment(316, 108, size)
+    ];
+}
+
 
