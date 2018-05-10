@@ -1,4 +1,4 @@
-# snake
+# Snake
 
 My version of the popular arcade game Snake.
 

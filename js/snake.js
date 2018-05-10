@@ -1,6 +1,6 @@
 var c = document.getElementById("game");
 var ctx = c.getContext("2d");
-var size = 8;
+var size = 12;
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -60,11 +60,11 @@ var renderSnake = function(ctx){
 var resetSnake = function(){
     snake = [];
     snake = [
-        new snakeSegment(312, 104, size),
-        new snakeSegment(304, 104, size),
-        new snakeSegment(304, 96, size),
-        new snakeSegment(296, 96, size),
-        new snakeSegment(288, 96, size)
+        new snakeSegment(312, 108, size),
+        new snakeSegment(300, 108, size),
+        new snakeSegment(300, 96, size),
+        new snakeSegment(288, 96, size),
+        new snakeSegment(276, 96, size)
     ];
 }
 

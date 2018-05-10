@@ -3,10 +3,11 @@ var horizontal = [];
 for (var h = 0; h < c.width; h+=size){
   horizontal.push(h);
 }
+
 for (var v = 0; v < c.height; v+=size){
   vertical.push(v);
 }
-
+console.log(vertical);
 var Game = function () {
   this.food = generateRandomBitsOfFood();
   //console.log (this.food);
@@ -31,7 +32,7 @@ var Game = function () {
 
   this.runGame = function () {
     ctx.clearRect(0, 0, c.width, c.height);
-    this.startAnimation(5);
+    this.startAnimation(6);
   };
 
   this.render = function (ctx) {
