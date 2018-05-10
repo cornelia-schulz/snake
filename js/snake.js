@@ -1,7 +1,6 @@
 var c = document.getElementById("game");
 var ctx = c.getContext("2d");
 var size = 8;
-console.log("game on");
 
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
@@ -23,14 +22,6 @@ var snakeSegment = function(x, y, sideLength) {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }
-
-var snake = [
-    new snakeSegment(292, 100, size),
-    new snakeSegment(300, 100, size),
-    new snakeSegment(308, 100, size),
-    new snakeSegment(308, 108, size),
-    new snakeSegment(316, 108, size)
-];
 
 var moveSnake = function(direction){
     // remove last segment of snake and add one at the front
@@ -54,7 +45,7 @@ var moveSnake = function(direction){
     game.checkForCollisionWithBorders();
     game.checkForCollisionWithSelf();  
     game.render(ctx);
-    console.log(snake);
+    //console.log(snake);
     for (var i = 0; i < snake.length; i++){
         snake[i].isGrowing = false;
     }
@@ -69,11 +60,11 @@ var renderSnake = function(ctx){
 var resetSnake = function(){
     snake = [];
     snake = [
-        new snakeSegment(292, 100, size),
-        new snakeSegment(300, 100, size),
-        new snakeSegment(308, 100, size),
-        new snakeSegment(308, 108, size),
-        new snakeSegment(316, 108, size)
+        new snakeSegment(312, 104, size),
+        new snakeSegment(304, 104, size),
+        new snakeSegment(304, 96, size),
+        new snakeSegment(296, 96, size),
+        new snakeSegment(288, 96, size)
     ];
 }
 
