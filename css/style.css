@@ -7,6 +7,15 @@ body {
     margin-top: 2%;
 }
 
+.logo {
+    width: 30px;
+    display: inline;
+}
+
+h1 {
+    display: inline;
+}
+
 #game {
     background-color: black;
 }
@@ -21,3 +30,4 @@ body {
     color: green;
     border-radius: 4%;
 }
+
