@@ -23,8 +23,10 @@ var Game = function () {
     var x2 = this.food.x;
     var y2 = this.food.y;
     if (x1 >= x2 && x1 <= x2 + size && (y1 >= y2 && y1 <= y2 + size)) {
-      snake[0].isGrowing = true;
-      this.points = calculatePoints ();
+      for (var i = 0; i < snake.length; i++){
+        snake[i].isGrowing = true;
+      }
+      this.points = this.calculatePoints ();
       document.getElementById("points").innerHTML = this.points;
       console.log (this.points);
       this.food = generateRandomBitsOfFood ();
@@ -32,7 +34,7 @@ var Game = function () {
   };
 
   this.runGame = function () {
-    //this.render(ctx);
+    ctx.clearRect(0, 0, c.width, c.height);
     this.startAnimation (5);
   };
 
@@ -65,37 +67,44 @@ var Game = function () {
       moveSnake(this.direction);
     }
   };
-};
 
-var checkForCollisionWithBorders = function () {
-  if (
-    snake[0].x < 0 ||
-    snake[0].x > c.width ||
-    snake[0].y < 0 ||
-    snake[0].y > c.height
-  ) {
-    endGame ();
-  }
-};
-
-var checkForCollisionWithSelf = function () {
-  for (var i = 1; i < snake.length; i++) {
-    if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
-      //console.log("following match: " + snake[0].x + " vs " + snake[i].x + " and " + snake[0].y + " vs " + snake[i].y + " at segment " + i);
-      endGame ();
+  this.checkForCollisionWithBorders = function () {
+    if (
+      snake[0].x < 0 ||
+      snake[0].x > c.width ||
+      snake[0].y < 0 ||
+      snake[0].y > c.height
+    ) {
+      this.stopMoving = true;
+      this.endGame ();
     }
-  }
-};
+  };
 
-var calculatePoints = function () {
+  this.checkForCollisionWithSelf = function () {
+    for (var i = 1; i < snake.length; i++) {
+      if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+        //console.log("following match: " + snake[0].x + " vs " + snake[i].x + " and " + snake[0].y + " vs " + snake[i].y + " at segment " + i);
+        //this.stopMoving = true;
+        this.endGame ();
+      }
+    }
+  };
 
-  return (game.points += 5);
-};
+  this.calculatePoints = function () {
+    return (game.points += 5);
+  };
 
-var endGame = function () {
-  //document.removeEventListener ('keydown', detectKey, false);
-  this.stopMoving = true;
-  console.log ('GAME OVER');
+  this.endGame = function () {
+    //document.removeEventListener ('keydown', detectKey, false);
+    console.log ('GAME OVER');
+    endGame_image = new Image();
+    endGame_image.src = "/images/gameover1.png";
+    endGame_image.onload = function(){
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.drawImage(endGame_image, 0, 0, c.width, c.height);
+    }
+    
+  };
 };
 
 

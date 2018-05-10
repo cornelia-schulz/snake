@@ -51,8 +51,8 @@ var moveSnake = function(direction){
     else {
         snake.unshift(new snakeSegment(snake[0].x+size, snake[0].y, size));
     }
-    checkForCollisionWithBorders();
-    checkForCollisionWithSelf();  
+    game.checkForCollisionWithBorders();
+    game.checkForCollisionWithSelf();  
     game.render(ctx);
     console.log(snake);
     for (var i = 0; i < snake.length; i++){

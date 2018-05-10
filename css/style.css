@@ -9,6 +9,14 @@ body {
 
 #game {
     background-color: black;
-    
 }
 
+.button {
+    margin: 0 auto;
+    clear: both;
+    display: block;
+    width: 25%;
+    background-color: #fff;
+    color: green;
+    border-radius: 4%;
+}
