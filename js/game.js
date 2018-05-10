@@ -35,7 +35,7 @@ var Game = function () {
 
   this.runGame = function () {
     ctx.clearRect(0, 0, c.width, c.height);
-    this.startAnimation (5);
+    this.startAnimation(5);
   };
 
   this.render = function (ctx) {
@@ -55,7 +55,6 @@ var Game = function () {
     var requestId = requestAnimationFrame (this.animate.bind (this));
     this.now = newtime;
     this.elapsed = this.now - this.then;
-    console.log ('stop: ' + this.stopMoving);
     if (this.stopMoving) {
       cancelAnimationFrame(requestId);
       return;
@@ -83,7 +82,7 @@ var Game = function () {
   this.checkForCollisionWithSelf = function () {
     for (var i = 1; i < snake.length; i++) {
       if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
-        //console.log("following match: " + snake[0].x + " vs " + snake[i].x + " and " + snake[0].y + " vs " + snake[i].y + " at segment " + i);
+        console.log("following match: " + snake[0].x + " vs " + snake[i].x + " and " + snake[0].y + " vs " + snake[i].y + " at segment " + i);
         //this.stopMoving = true;
         this.endGame ();
       }
@@ -95,8 +94,8 @@ var Game = function () {
   };
 
   this.endGame = function () {
-    //document.removeEventListener ('keydown', detectKey, false);
     console.log ('GAME OVER');
+    //this.stopMoving = true;
     endGame_image = new Image();
     endGame_image.src = "images/gameover1.png";
     endGame_image.onload = function(){
@@ -111,3 +110,5 @@ var Game = function () {
 var game = new Game ();
 game.runGame ();
 //game.direction = "up";
+var btn = document.getElementsByClassName("button")[0];
+btn.addEventListener("click", game.runGame);

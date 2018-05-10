@@ -20,5 +20,3 @@ document.addEventListener("keydown", function detectKey(e){
     }
 });
 
-var btn = document.querySelector("input");
-btn.addEventListener("click", game.startGame);
