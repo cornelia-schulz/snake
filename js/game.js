@@ -48,7 +48,7 @@ var Game = function () {
     this.then = window.performance.now ();
     this.startTime = this.then;
     console.log ('Start time: ' + this.startTime);
-    this.animate ();
+    this.animate();
   };
 
   this.animate = function (newtime) {
@@ -57,13 +57,13 @@ var Game = function () {
     this.elapsed = this.now - this.then;
     console.log ('stop: ' + this.stopMoving);
     if (this.stopMoving) {
+      cancelAnimationFrame(requestId);
       return;
     }
     if (this.elapsed > this.fpsInterval) {
       //console.log("elapsed and fpsInterval: " + this.elapsed + " and " + this.fpsInterval);
       this.then = this.now - this.elapsed % this.fpsInterval;
-      this.render (ctx);
-
+      this.render(ctx);
       moveSnake(this.direction);
     }
   };
@@ -98,7 +98,7 @@ var Game = function () {
     //document.removeEventListener ('keydown', detectKey, false);
     console.log ('GAME OVER');
     endGame_image = new Image();
-    endGame_image.src = "/images/gameover1.png";
+    endGame_image.src = "images/gameover1.png";
     endGame_image.onload = function(){
       ctx.clearRect(0, 0, c.width, c.height);
       ctx.drawImage(endGame_image, 0, 0, c.width, c.height);
@@ -109,5 +109,5 @@ var Game = function () {
 
 
 var game = new Game ();
-game.startGame ();
+game.runGame ();
 //game.direction = "up";
