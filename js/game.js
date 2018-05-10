@@ -14,6 +14,7 @@ var Game = function () {
   this.elapsed;
 
   this.startGame = function () {
+    this.points = 0;
     this.runGame ();
   };
 
@@ -107,8 +108,10 @@ var Game = function () {
 };
 
 
-var game = new Game ();
-game.runGame ();
-//game.direction = "up";
+var game = new Game();
+//game.startGame();
+
 var btn = document.getElementsByClassName("button")[0];
-btn.addEventListener("click", game.runGame);
+btn.onclick = function(){
+  game.startGame();
+}
