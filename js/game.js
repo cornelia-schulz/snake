@@ -34,6 +34,7 @@ var Game = function () {
 
   this.startGame = function () {
     resetSnake();
+    this.direction = "right";
     this.stopMoving = false;
     this.points = 0;
     document.getElementById("points").innerHTML = this.points;
