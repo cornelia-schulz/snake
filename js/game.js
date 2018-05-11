@@ -7,10 +7,10 @@ for (var h = 0; h < c.width; h+=size){
 for (var v = 0; v < c.height; v+=size){
   vertical.push(v);
 }
-console.log(vertical);
+
 var Game = function () {
   this.food = generateRandomBitsOfFood();
-  //console.log (this.food);
+  console.log (this.food);
   this.points = 0;
   this.direction = "right";
   this.stopMoving = false;
@@ -21,6 +21,16 @@ var Game = function () {
   this.now;
   this.then;
   this.elapsed;
+
+  this.getFood = function(){
+    this.food = generateRandomBitsOfFood();
+      for (var i = 0; i < snake.length; i++){
+        if(this.food.x === snake[i].x && this.food.y === snake[i].y){
+          this.food = generateRandomBitsOfFood();
+          this.getFood();
+        }
+    }
+  }
 
   this.startGame = function () {
     resetSnake();
@@ -75,7 +85,7 @@ var Game = function () {
       }
       this.points = this.calculatePoints ();
       document.getElementById("points").innerHTML = this.points;
-      this.food = generateRandomBitsOfFood ();
+      this.getFood();
     }
   };
 
